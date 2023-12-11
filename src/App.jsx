@@ -6,6 +6,7 @@ import './App.css'
 import Header from './components/Header'
 import Articles from './components/ArticleList'
 import Login from './components/Login';
+import Search from './components/search';
 
 
 function App() {
@@ -16,9 +17,9 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
+        <Route path="" element={<Articles/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
-        {/* <Route path="" element={<Articles/>}></Route> */}
-        
+        <Route path="/search" element={<Search/>}></Route>
       </Routes>
     </BrowserRouter>
        
