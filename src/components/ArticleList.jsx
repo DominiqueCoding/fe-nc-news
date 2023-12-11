@@ -1,6 +1,7 @@
 import { useState,useEffect } from 'react'
 
 import Articles from './Articles'
+import getArticles from '../utils/api'
 
 function ArticleList() {
 
@@ -9,10 +10,7 @@ function ArticleList() {
     const [isLoading,setIsLoading] = useState(true)
 
     useEffect(()=>{
-      fetch(`https://dom-nc-news-web.onrender.com/api/articles`)
-      .then((data) => {
-        return data.json();
-      })
+      getArticles()
       .then((res) => {
         setArticlesList(res)
         setIsLoading(false)
