@@ -1,66 +1,44 @@
 import { useState,useEffect } from 'react'
 
 import Articles from './Articles'
-
-
-const fakeArticles = [
-    {
-      "article_id": 1,
-      "title": "fake title",
-      "topic": "mitch",
-      "author": "icellusedkars",
-      "body": "some gifs",
-      "created_at": "2020-11-03T09:12:00.000Z",
-      "votes": 5,
-      "article_img_url": "https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700"
-    },
-    {
-        "article_id": 2,
-        "title": "fake title",
-        "topic": "mitch",
-        "author": "icellusedkars",
-        "body": "some gifs",
-        "created_at": "2020-11-03T09:12:00.000Z",
-        "votes": 5,
-        "article_img_url": "https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700"
-    },
-    {
-        "article_id": 3,
-        "title": "fake title",
-        "topic": "mitch",
-        "author": "icellusedkars",
-        "body": "some gifs",
-        "created_at": "2020-11-03T09:12:00.000Z",
-        "votes": 5,
-        "article_img_url": "https://images.pexels.com/photos/158651/news-newsletter-newspaper-information-158651.jpeg?w=700&h=700"
-    },
-
-]
-
-
+import getArticles from '../utils/api'
 
 function ArticleList() {
 
     const [articlesList,setArticlesList] = useState([])
-  
-  return (
-    <>
-      <section className='article_container'>
-        <div className="articles">
-            <ul className="formatted-articles">
 
-              {fakeArticles.map((article) => {
+    const [isLoading,setIsLoading] = useState(true)
 
-          
-                return (
-                  <Articles key={article.article_id} article = {article}></Articles>
-                );
-              })}
-            </ul>
-        </div>
-      </section>
-    </>
-  )
+    useEffect(()=>{
+      getArticles()
+      .then((res) => {
+        setArticlesList(res)
+        setIsLoading(false)
+      });
+    },[])
+
+    if(isLoading){
+      return(
+        <p>loading</p>
+      )
+    }else{
+      return (
+        <>
+          <section className='article_container'>
+            <div className="articles">
+                <ul className="formatted-articles">
+    
+                  {articlesList.map((article) => {
+                    return (
+                      <Articles key={article.article_id} article = {article}></Articles>
+                    );
+                  })}
+                </ul>
+            </div>
+          </section>
+        </>
+      )
+    }
 }
 
 export default ArticleList

@@ -12,22 +12,23 @@ function Header() {
 
         <nav id='main_navBar'>
             <ul className='nav_list'>
-                
-                
-
+    
                 <li>
                     <Link to = "/login">
-                        
+                        <button>login</button>
                     </Link>
-                    <button>login</button>
                 </li>
 
                 <li>
-                    <button>Home</button>
+                    <Link to = "/">
+                        <button>Home</button>
+                    </Link>
                 </li>
 
                 <li>
-                    <button>Search</button>
+                    <Link to = "/search">
+                        <button>Search</button>
+                    </Link>   
                 </li>
                 
             </ul>
