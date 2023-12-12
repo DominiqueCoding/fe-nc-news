@@ -46,6 +46,19 @@ ul{
   
 }
 
+.article-name{
+  padding:0px
+}
+
+.article-card{
+  border:10px;
+  margin:10px 10px 20px;
+  border: 3px solid grey;
+  border-radius: 10px;
+  width:30vw;
+  
+}
+
 .article-img{
   height: 20vh;
   width:20vw;

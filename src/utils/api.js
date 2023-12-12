@@ -1,5 +1,5 @@
-function getArticles(){
-    return fetch(`https://dom-nc-news-web.onrender.com/api/articles`)
+function getArticles(searchquery = "articles"){
+    return fetch(`https://dom-nc-news-web.onrender.com/api/${searchquery}`)
     .then((data) => {
       return data.json();
     })
