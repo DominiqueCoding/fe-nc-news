@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import getArticles from '../utils/api'
+import {getCommentsById} from '../utils/api'
 import Comments from './Comments'
 
 function CommentsList() {
@@ -12,7 +12,8 @@ function CommentsList() {
     const {id} = useParams()
 
     useEffect(()=>{
-      getArticles(id + "/comments")
+
+      getCommentsById(id)
       .then((res) => {
         setCommentsList(res)
         setIsLoading(false)
@@ -34,7 +35,7 @@ function CommentsList() {
                     <p>{commentsList.length} comments</p>
                   {commentsList.map((comment) => {
                     return (
-                        <Comments key = {comment.comment_id} comment = {comment}></Comments>
+                        <Comments key = {comment.comment_id} comment = {comment}/>
                     );
                   })}
                 </ul>

@@ -12,6 +12,21 @@ function getArticles(searchquery){
       })
     }
     
-  }
+}
+
+function getCommentsById(id){
+  return fetch(`https://dom-nc-news-web.onrender.com/api/articles/${id}/comments`)
+    .then((data) => {
+      return data.json();
+    })
+}
+
+
+export{
+    getArticles,
+    getCommentsById,
+}
+
+
     
-export default getArticles
+// export default getArticles

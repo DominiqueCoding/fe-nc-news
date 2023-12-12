@@ -1,7 +1,7 @@
 import { useState,useEffect } from 'react'
 
 import Articles from './Articles'
-import getArticles from '../utils/api'
+import {getArticles} from '../utils/api'
 
 function ArticleList() {
 

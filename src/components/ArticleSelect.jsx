@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import getArticles from '../utils/api'
+import {getArticles} from '../utils/api'
 import CommentsList from './CommentsList'
 
 
@@ -8,7 +8,7 @@ function ArticleSelect() {
 
   const [currentArticle, setCurrentArticle] = useState()
   const [isLoading, setIsLoading] = useState(true)
-  const [commentCount,setCommentCount] = useState()
+ 
 
   const {id} = useParams()
   
@@ -43,7 +43,7 @@ function ArticleSelect() {
   
             <p>{new Date(currentArticle.created_at).toLocaleString()}</p>
 
-            <CommentsList></CommentsList>
+            <CommentsList/>
 
           </section>
       </>
