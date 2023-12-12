@@ -2,14 +2,15 @@ import { useState,useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import {getArticles} from '../utils/api'
 import CommentsList from './CommentsList'
+import ArticleVoteButton from './ArticleVoteButton'
 
 
 function ArticleSelect() {
 
   const [currentArticle, setCurrentArticle] = useState()
   const [isLoading, setIsLoading] = useState(true)
+  const [votes,setVotes] = useState()
  
-
   const {id} = useParams()
   
   useEffect(()=>{
@@ -25,6 +26,7 @@ function ArticleSelect() {
       <p>loading</p>
     )
   }else{
+    
     return (
       <>
           <section className='selected-article'>
@@ -37,11 +39,13 @@ function ArticleSelect() {
   
             <p>{currentArticle.author}</p>
   
-            <p>{currentArticle.votes} votes</p>
-  
             <p>{currentArticle.topic}</p>
   
             <p>{new Date(currentArticle.created_at).toLocaleString()}</p>
+
+            {/* <p>{currentArticle.votes} votes</p> */}
+
+            <ArticleVoteButton votes = {votes} setVotes = {setVotes} votesLocal = {currentArticle.votes}/>
 
             <CommentsList/>
 
