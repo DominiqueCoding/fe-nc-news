@@ -72,5 +72,17 @@ ul{
   grid-template-rows: repeat(3, 1fr);
 } */
 
+.comment-item{
+  
+  border:10px;
+  margin:10px 10px 20px;
+  border: 3px solid grey;
+  border-radius: 10px;
+  width:50vw;
+}
+
+.formatted-comments{
+  display:inline-block;
+}
 
 
