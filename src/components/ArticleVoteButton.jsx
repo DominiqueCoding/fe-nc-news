@@ -6,12 +6,14 @@ function ArticleVoteButton({votes,setVotes,votesLocal}) {
 
     const {id} = useParams()
 
-    const [pressToggle, setPressToggle] = useState(false)
+    const [pressToggleInc, setPressToggleInc] = useState(false)
+    const [pressToggleDec, setPressToggleDec] = useState(false)
+
+
     const [voteUpdate, setVoteUpdate] = useState({inc_votes: 0})
 
-    function handleVotes(){
-
-        if(!pressToggle){
+    function handleVotesInc(){
+        if(!pressToggleInc){
             setVoteUpdate({
                 inc_votes : 1
             })
@@ -19,9 +21,30 @@ function ArticleVoteButton({votes,setVotes,votesLocal}) {
             setVotes(
                 votesLocal + 1
             )
-        }else if(pressToggle){
+        }else if(pressToggleInc){
             setVoteUpdate({
                 inc_votes : -1
+            })
+
+            setVotes(
+                votesLocal
+            )
+        }
+
+    }
+
+    function handleVotesDec(){
+        if(!pressToggleDec){
+            setVoteUpdate({
+                inc_votes : -1
+            })
+
+            setVotes(
+                votesLocal - 1
+            )
+        }else if(pressToggleDec){
+            setVoteUpdate({
+                inc_votes : +1
             })
 
             setVotes(
@@ -32,17 +55,25 @@ function ArticleVoteButton({votes,setVotes,votesLocal}) {
 
     useEffect(()=>{
         patchArticleVotesById(id,voteUpdate)
-    },[pressToggle])
+    },[voteUpdate])
 
    
     return (
         <>
         <p>{votes || votesLocal} votes</p>
         <button onClick = {()=>{
-            setPressToggle(!pressToggle)
-            handleVotes()
+            
+            setPressToggleInc(!pressToggleInc)
+            handleVotesInc()
         }}>
-            add vote
+            UpVote
+        </button>
+
+        <button onClick = {()=>{
+            setPressToggleDec(!pressToggleDec)
+            handleVotesDec()
+        }}>
+            DownVote
         </button>
         </>
     )
