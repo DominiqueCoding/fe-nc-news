@@ -19,12 +19,8 @@ function DeleteComment(props) {
                     delete comment
                 </button>
             </>
-          )
-    }else{
-        return 
+        )
     }
-
-  
 }
 
 export default DeleteComment
