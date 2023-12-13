@@ -12,7 +12,7 @@ function Login() {
 
   const [isLoading,setIsLoading] = useState(true)
   
-  const [currentUser,setCurrentUser] = useContext(UserContext)
+  const {currentUser,setCurrentUser} = useContext(UserContext)
 
   useEffect(()=>{
     getAllUsers()

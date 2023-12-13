@@ -3,9 +3,6 @@ import DeleteComment from './DeleteComment'
 
 function Comments(props) {
 
-  // const [userComments,setUserComments] = useState([])
-
-
   return (
     <>
         <div className='comment-item'>
