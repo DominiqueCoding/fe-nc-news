@@ -54,12 +54,22 @@ function getAllUsers(){
       })
 }
 
+function deleteCommentByCommentId(id){
+  return fetch(`https://dom-nc-news-web.onrender.com/api/comments/${id}`,{
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+}
+
 export{
     getArticles,
     getCommentsById,
     patchArticleVotesById,
     postNewCommentByArticleId,
     getAllUsers,
+    deleteCommentByCommentId,
 }
 
 
