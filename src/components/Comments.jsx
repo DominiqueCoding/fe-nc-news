@@ -14,7 +14,7 @@ function Comments(props) {
             <p>{props.comment.author}</p>
             <p>{new Date(props.comment.created_at).toLocaleString()}</p>
 
-            <DeleteComment CommentAuthor = {props.comment.author} comment_id = {props.comment.comment_id}/> 
+            <DeleteComment commentAuthor = {props.comment.author} comment_id = {props.comment.comment_id}/> 
         </div>
     </>
   )

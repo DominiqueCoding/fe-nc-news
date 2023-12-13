@@ -61,12 +61,6 @@ function deleteCommentByCommentId(id){
       "Content-Type": "application/json",
     },
   })
-    .then(() => {
-      return
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
 }
 
 export{

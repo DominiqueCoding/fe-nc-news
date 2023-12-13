@@ -8,7 +8,7 @@ function DeleteComment(props) {
      })  
     }
 
-    if(props.CommentAuthor === "grumpy19"){
+    if(props.commentAuthor === "grumpy19"){
         return (
             <>
                 <button onClick = {()=>{
