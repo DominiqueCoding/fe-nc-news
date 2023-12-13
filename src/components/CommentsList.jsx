@@ -2,6 +2,7 @@ import { useState,useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import {getCommentsById} from '../utils/api'
 import Comments from './Comments'
+import AddComment from './AddComment'
 
 function CommentsList() {
 
@@ -32,7 +33,8 @@ function CommentsList() {
             <div className="comments">
                 <ul className="formatted-comments">
                     
-                    <p>{commentsList.length} comments</p>
+                  <p>{commentsList.length} comments</p>
+                  <AddComment/>
                   {commentsList.map((comment) => {
                     return (
                         <Comments key = {comment.comment_id} comment = {comment}/>

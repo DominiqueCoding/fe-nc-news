@@ -34,10 +34,32 @@ function patchArticleVotesById(id,updatedVote){
     })
 }
 
+function postNewCommentByArticleId(id,newComment){
+  return fetch(`https://dom-nc-news-web.onrender.com/api/articles/${id}/comments`,{
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(newComment),
+  })
+    .then((data) => {
+      return data.json();
+    })
+}
+
+function getAllUsers(){
+  return fetch(`https://dom-nc-news-web.onrender.com/api/users`)
+      .then((data) => {
+        return data.json();
+      })
+}
+
 export{
     getArticles,
     getCommentsById,
     patchArticleVotesById,
+    postNewCommentByArticleId,
+    getAllUsers,
 }
 
 

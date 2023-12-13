@@ -1,44 +1,70 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 
 import Users from './Users';
-
-const fakeUsers = [
-    {
-      "username": "fake user 1",
-      "name": "jonny",
-      "avatar_url": "https://www.healthytherapies.com/wp-content/uploads/2016/06/Lime3.jpg"
-    },
-    {
-      "username": "fake user 2",
-      "name": "sam",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/24604688?s=460&v=4"
-    },
-  ]
+import { getAllUsers } from '../utils/api';
+import { useContext } from "react";
+import { UserContext } from '../context/UserContext';
 
 function Login() {
+
+  const [userArray,setUserArray] = useState([])
+  const [selectedUser,setSelectedUser] = useState("")
+
+  const [isLoading,setIsLoading] = useState(true)
   
-  return (
-    <>
-      <section className='main_login'>
-        <ul className='login_list'>
-            <button>login</button>
-            <button>Sign-up</button>
-        </ul>
-        
-        <ul>
-            {fakeUsers.map((user) => {
-                return (
-                // <Articles key={article.article_id} article = {article}></Articles>
+  const [currentUser,setCurrentUser] = useContext(UserContext)
 
-                <Users key = {user.username} user = {user}></Users>
-                );
-            })}
-        </ul>
+  useEffect(()=>{
+    getAllUsers()
+    .then((res)=>{
+      setUserArray(res)
+      setIsLoading(false)
+    })
+  },[])
 
+  if(isLoading){
+    return (
+      <p>loading</p>
+    )
+  }else if(currentUser){
+    return (
+      <>
+      <h1>welcome back {currentUser.name}</h1>
 
-      </section>
-    </>
-  )
+      <h2 className='show name'>{currentUser.username}</h2>
+      <img src={currentUser.avatar_url} alt="a user profle image" />
+      
+      <button onClick = {()=>{
+        setCurrentUser()
+      }}>
+        sign out
+      </button>
+      </>
+    )
+  }else{
+    return (
+      <>
+        <section className='main_login'>
+          <ul className='login_list'>
+              <button onClick = {()=>{
+                setCurrentUser(selectedUser)
+              }}>login</button>
+              <button>Sign-up</button>
+          </ul>
+          
+          <ul>
+              {userArray.map((user) => {
+                  return (
+                  <Users key = {user.username} user = {user}  setSelectedUser = {setSelectedUser}></Users>
+                  );
+              })}
+          </ul>
+  
+        </section>
+      </>
+    )
+  }
+
 }
 
 export default Login
