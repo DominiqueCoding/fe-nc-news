@@ -11,7 +11,7 @@ function AddComment(props) {
 
     const [comment,setComment] = useState("")
     
-    const [currentUser,setCurrentUser] = useContext(UserContext)
+    const [currentUser] = useContext(UserContext)
 
     function handleCommentChange(commentUpdate){
         setComment(commentUpdate)
@@ -20,7 +20,7 @@ function AddComment(props) {
     function handleSubmit(){
         console.log(comment)
 
-        if(currentUser){
+        if(currentUser && comment){
             const postComment = {
                 username: currentUser.username,
                 body: comment
@@ -29,6 +29,8 @@ function AddComment(props) {
             postNewCommentByArticleId(id,postComment)
 
             alert(`comment added as ${currentUser.username}`)
+        }else if(currentUser && !comment){
+            alert("comment can not be empty")
         }else{
             alert("please Login to add a comment")
         }
