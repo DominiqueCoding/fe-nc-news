@@ -60,16 +60,8 @@ function deleteCommentByCommentId(id){
     headers: {
       "Content-Type": "application/json",
     },
-    // body: JSON.stringify({
-    //   comment_id,
-    //   body,
-    //   votes,
-    //   author,
-    //   article_id,
-    //   created_at
-    // }),
   })
-    .then((data) => {
+    .then(() => {
       return
     })
     .catch((err)=>{

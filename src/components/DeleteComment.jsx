@@ -1,4 +1,3 @@
-import { useState} from 'react'
 import { deleteCommentByCommentId } from '../utils/api'
 
 function DeleteComment(props) {
