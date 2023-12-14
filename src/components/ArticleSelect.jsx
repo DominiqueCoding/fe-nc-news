@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import {getArticles} from '../utils/api'
 import CommentsList from './CommentsList'
 import ArticleVoteButton from './ArticleVoteButton'
+import Error from './Error'
 
 
 function ArticleSelect() {
@@ -10,6 +11,8 @@ function ArticleSelect() {
   const [currentArticle, setCurrentArticle] = useState()
   const [isLoading, setIsLoading] = useState(true)
   const [votes,setVotes] = useState()
+
+  const [error,setError] = useState()
  
   const {id} = useParams()
   
@@ -18,14 +21,21 @@ function ArticleSelect() {
     .then((res) => {
       setCurrentArticle(res)
       setIsLoading(false)
-    });
+    })
+    .catch((err)=>{
+      setError(err)
+    })
   },[id])
 
-  if(isLoading){
+  if(isLoading && !error){
     return (
       <p>loading</p>
     )
-  }else{
+  }
+  else if(error){
+    return <Error message = {error.message}/>
+  }
+  else{
     
     return (
       <>
