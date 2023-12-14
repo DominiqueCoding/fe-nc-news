@@ -63,6 +63,20 @@ function deleteCommentByCommentId(id){
   })
 }
 
+function getAllTopics(){
+  return fetch(`https://dom-nc-news-web.onrender.com/api/topics`)
+      .then((data) => {
+        return data.json();
+      })
+}
+
+function getArticlesByTopic(topic){
+  return fetch(`https://dom-nc-news-web.onrender.com/api/articles?topic=${topic}`)
+      .then((data) => {
+        return data.json();
+      })
+}
+
 export{
     getArticles,
     getCommentsById,
@@ -70,6 +84,8 @@ export{
     postNewCommentByArticleId,
     getAllUsers,
     deleteCommentByCommentId,
+    getAllTopics,
+    getArticlesByTopic,
 }
 
 
