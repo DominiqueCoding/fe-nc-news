@@ -1,4 +1,4 @@
-import { useState} from 'react'
+import { useState,useEffect} from 'react'
 import { postNewCommentByArticleId } from '../utils/api'
 import { useParams } from 'react-router-dom'
 
@@ -7,6 +7,8 @@ function AddComment(props) {
     const {id} = useParams()
 
     const [comment,setComment] = useState("")
+    const [error,setError] = useState()
+    const [postComment,setPostComment] = useState()
     
 
     function handleCommentChange(commentUpdate){
@@ -14,25 +16,39 @@ function AddComment(props) {
     }
 
     function handleSubmit(){
-        console.log(comment)
+      if(comment){
+        setPostComment({
+          username: "grumpy19",
+          body: comment
+        })
+      }
+      else{
+        alert("comment can not be empty")
+      }
+    }
 
-        if(comment){
-            const postComment = {
-                username: "grumpy19",
-                body: comment
-            }
+    useEffect(()=>{
+      if(postComment){
+        postNewCommentByArticleId(id,postComment)
+        .then(()=>{
+          alert("comment added")
+          window.location.reload();
+      })
+      .catch((err)=>{
+          setError(err)
+      })
+      }
+    },[postComment])
 
-            postNewCommentByArticleId(id,postComment)
-
-            alert(`comment added as grumpy19`)
-        }else{
-            alert("comment can not be empty")
-        }
+    if(error){
+      alert(error.message)
+      window.location.reload();       
     }
 
   return (
     <>
       <form onSubmit = {(event)=>{
+        event.preventDefault()
         handleSubmit()
 
       }}>

@@ -9,12 +9,18 @@ function ArticleList() {
 
     const [isLoading,setIsLoading] = useState(true)
 
+    const [isError,setIsError] = useState(false)
+
     useEffect(()=>{
       getArticles()
       .then((res) => {
         setArticlesList(res)
         setIsLoading(false)
-      });
+      })
+      .catch((err)=>{
+        setIsError({err})
+        console.log(isError,"error")
+      })
     },[])
 
     if(isLoading){
@@ -24,6 +30,7 @@ function ArticleList() {
     }else{
       return (
         <>
+          {}
           <section className='article_container'>
             <div className="articles">
                 <ul className="formatted-articles">

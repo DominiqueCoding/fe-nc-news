@@ -3,13 +3,23 @@ function getArticles(searchquery){
     if(searchquery){
       return fetch(`https://dom-nc-news-web.onrender.com/api/articles/${searchquery}`)
       .then((data) => {
-        return data.json();
+        if(!data.ok){
+          return Promise.reject({error:data.status,message:"article not found"})
+        }else{
+          return data.json();
+        }
       })
+     
     }else{
       return fetch(`https://dom-nc-news-web.onrender.com/api/articles`)
       .then((data) => {
-        return data.json();
+        if(!data.ok){
+          return Promise.reject({error:data.status,message:"not found"})
+        }else{
+          return data.json();
+        }
       })
+      
     }
     
 }
@@ -17,8 +27,13 @@ function getArticles(searchquery){
 function getCommentsById(id){
   return fetch(`https://dom-nc-news-web.onrender.com/api/articles/${id}/comments`)
     .then((data) => {
-      return data.json();
+      if(!data.ok){
+        return Promise.reject({error:data.status,message:"not found"})
+      }else{
+        return data.json();
+      }
     })
+    
 }
 
 function patchArticleVotesById(id,updatedVote){
@@ -30,8 +45,13 @@ function patchArticleVotesById(id,updatedVote){
     body: JSON.stringify(updatedVote),
   })
     .then((data) => {
-      return data.json();
+      if(!data.ok){
+        return Promise.reject({error:data.status,message:"not found"})
+      }else{
+        return data.json();
+      }
     })
+    
 }
 
 function postNewCommentByArticleId(id,newComment){
@@ -43,15 +63,25 @@ function postNewCommentByArticleId(id,newComment){
     body: JSON.stringify(newComment),
   })
     .then((data) => {
-      return data.json();
+      if(!data.ok){
+        return Promise.reject({error:data.status,message:"Failed to add Comment"})
+      }else{
+        return data.json();
+      }
     })
+    
 }
 
 function getAllUsers(){
   return fetch(`https://dom-nc-news-web.onrender.com/api/users`)
       .then((data) => {
-        return data.json();
+        if(!data.ok){
+          return Promise.reject({error:data.status,message:"not found"})
+        }else{
+          return data.json();
+        }
       })
+      
 }
 
 function deleteCommentByCommentId(id){
@@ -61,20 +91,37 @@ function deleteCommentByCommentId(id){
       "Content-Type": "application/json",
     },
   })
+  .then((data) => {
+    if(!data.ok){
+      return Promise.reject({error:data.status,message:"delete failed"})
+    }else{
+      return data;
+    }
+  })
 }
 
 function getAllTopics(){
   return fetch(`https://dom-nc-news-web.onrender.com/api/topics`)
       .then((data) => {
-        return data.json();
+        if(!data.ok){
+          return Promise.reject({error:data.status,message:"not found"})
+        }else{
+          return data.json();
+        }
       })
+      
 }
 
 function getArticlesByTopic(topic){
   return fetch(`https://dom-nc-news-web.onrender.com/api/articles?topic=${topic}`)
       .then((data) => {
-        return data.json();
+        if(!data.ok){
+          return Promise.reject({error:data.status,message:"topic not found"})
+        }else{
+          return data.json();
+        }
       })
+      
 }
 
 export{
