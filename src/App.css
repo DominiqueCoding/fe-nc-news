@@ -39,10 +39,14 @@ ul{
 
 .formatted-Topics{
   display: flex;
+  margin:0;
+  padding:0;
 }
 
 .formatted-topic-articles{
   display: inline-block;
+  margin:0;
+  padding:0;
 }
 
 .topic-item{
