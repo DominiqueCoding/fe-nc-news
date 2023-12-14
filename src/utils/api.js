@@ -64,7 +64,7 @@ function postNewCommentByArticleId(id,newComment){
   })
     .then((data) => {
       if(!data.ok){
-        return Promise.reject({error:data.status,message:"not found"})
+        return Promise.reject({error:data.status,message:"Failed to add Comment"})
       }else{
         return data.json();
       }
@@ -90,6 +90,13 @@ function deleteCommentByCommentId(id){
     headers: {
       "Content-Type": "application/json",
     },
+  })
+  .then((data) => {
+    if(!data.ok){
+      return Promise.reject({error:data.status,message:"delete failed"})
+    }else{
+      return data;
+    }
   })
 }
 
