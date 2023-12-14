@@ -9,13 +9,28 @@ function ArticleList() {
 
     const [isLoading,setIsLoading] = useState(true)
 
+    const [sortQuery, setSortQuery] = useState("")
+    const [orderQuery, setOrderQuery] = useState("")
+
     useEffect(()=>{
+      
+
+
+
       getArticles()
       .then((res) => {
         setArticlesList(res)
         setIsLoading(false)
       });
     },[])
+
+    function handleSort(query){
+      setSortQuery(query)
+    }
+
+    function handleOrder(query){
+      setOrderQuery(query)
+    }
 
     if(isLoading){
       return(
@@ -24,6 +39,41 @@ function ArticleList() {
     }else{
       return (
         <>
+          <div className='article-Queries'>
+              <select 
+              name="sort-query"
+              id="sort-query"
+              onChange={(event)=>{
+                handleSort(event.target.value)
+              }}
+              >
+                <option value="">no sort</option>
+                <option value="sort_by=date">sort by date</option>
+                <option value="sort_by=comment_count">sort by comment count</option>
+                <option value="sort_by=votes">sort by votes</option>
+              </select>
+
+              <select 
+              name="order-query"
+              id="order-query"
+              onChange={(event)=>{
+                handleOrder(event.target.value)
+              }}
+              >
+                <option value="">no order</option>
+                <option value="order=asc">accending order</option>
+                <option value="order=desc">descending order</option>
+              </select>
+              
+              <form
+                onSubmit={()=>{
+
+                }}
+              
+              >
+                <button>submit</button>
+              </form>
+          </div>
           <section className='article_container'>
             <div className="articles">
                 <ul className="formatted-articles">
