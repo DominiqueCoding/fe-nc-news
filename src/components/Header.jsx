@@ -5,9 +5,9 @@ import { useContext } from "react";
 import { UserContext } from '../context/UserContext';
 
 function Header() {
-  const {currentUser,setCurrentUser} = useContext(UserContext)
+  const {currentUser} = useContext(UserContext)
 
-  let loggedInMessage = "logged in as grumpy19"
+  let loggedInMessage = "not logged in"
 
   if(currentUser){
     loggedInMessage = `logged in as ${currentUser.username}`

@@ -12,6 +12,9 @@ function CommentsList() {
 
     const {id} = useParams()
 
+    const [commentToAdd,setCommentToAdd] = useState()
+    const [commentToDelete,setCommentToDelete] = useState()
+
     useEffect(()=>{
 
       getCommentsById(id)
@@ -19,7 +22,9 @@ function CommentsList() {
         setCommentsList(res)
         setIsLoading(false)
       });
-    },[id])
+    },[id,commentToAdd,commentToDelete])
+
+    console.log(commentToDelete)
 
     if(isLoading){
       return(
@@ -34,10 +39,10 @@ function CommentsList() {
                 <ul className="formatted-comments">
                     
                   <p>{commentsList.length} comments</p>
-                  <AddComment/>
+                  <AddComment setCommentToAdd={setCommentToAdd}/>
                   {commentsList.map((comment) => {
                     return (
-                        <Comments key = {comment.comment_id} comment = {comment}/>
+                        <Comments key = {comment.comment_id} comment = {comment} setCommentToDelete={setCommentToDelete}/>
                     );
                   })}
                 </ul>

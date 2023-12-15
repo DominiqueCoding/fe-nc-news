@@ -1,14 +1,18 @@
 import { useState,useEffect} from 'react'
 import { postNewCommentByArticleId } from '../utils/api'
 import { useParams } from 'react-router-dom'
+import { useContext } from "react";
+import { UserContext } from '../context/UserContext';
 
-function AddComment(props) {
+function AddComment({setCommentToAdd}) {
 
     const {id} = useParams()
 
     const [comment,setComment] = useState("")
     const [error,setError] = useState()
     const [postComment,setPostComment] = useState()
+
+    const {currentUser} = useContext(UserContext)
     
 
     function handleCommentChange(commentUpdate){
@@ -16,35 +20,34 @@ function AddComment(props) {
     }
 
     function handleSubmit(){
-      if(comment){
+      if(comment && currentUser){
         setPostComment({
-          username: "grumpy19",
+          username: currentUser.username,
           body: comment
         })
       }
+      else if(comment){
+        alert("please login to comment")
+      }
       else{
-        alert("comment can not be empty")
+        alert("comment cannot be empty")
       }
     }
-
     useEffect(()=>{
       if(postComment){
         postNewCommentByArticleId(id,postComment)
         .then(()=>{
+          setCommentToAdd(postComment)
           alert("comment added")
-          window.location.reload();
-      })
-      .catch((err)=>{
-          setError(err)
-      })
+        })
+        .catch((err)=>{
+            setError(err)
+            alert(error.message)
+        })
       }
     },[postComment])
-
-    if(error){
-      alert(error.message)
-      window.location.reload();       
-    }
-
+    
+    
   return (
     <>
       <form onSubmit = {(event)=>{
