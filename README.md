@@ -1,8 +1,9 @@
-# React + Vite
+site URL:  https://dom-nc-news.netlify.app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+this is an app that allows the user to view a variety of different news topics and articles, allowing the user to read the article and make coments about it.
 
-Currently, two official plugins are available:
+Backend repo link: https://github.com/DominiqueCoding/be-nc-news-repo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+the minimum required verison of node: v20.8.0
+
+to run the project locally, git clone https://github.com/DominiqueCoding/fe-nc-news.git then cd fe-nc-news and use code . to open the project in vscode. run npm install to install all required packages, then you should be able to run npm run dev to run a local version.
