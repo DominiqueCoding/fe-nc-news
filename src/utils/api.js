@@ -124,6 +124,46 @@ function getArticlesByTopic(topic){
       
 }
 
+function getAndSortAllArticles(sortQuery,orderQuery){
+  if(sortQuery && orderQuery){
+    return fetch(`https://dom-nc-news-web.onrender.com/api/articles?${sortQuery}&&${orderQuery}`)
+      .then((data) => {
+        if(!data.ok){
+          return Promise.reject({error:data.status,message:"sort failed"})
+        }else{
+          return data.json();
+        }
+      })
+  }else if(orderQuery){
+    return fetch(`https://dom-nc-news-web.onrender.com/api/articles?${orderquery}`)
+      .then((data) => {
+        if(!data.ok){
+          return Promise.reject({error:data.status,message:"order failer"})
+        }else{
+          return data.json();
+        }
+      })
+  }else if(sortQuery){
+    return fetch(`https://dom-nc-news-web.onrender.com/api/articles?${sortQuery}`)
+      .then((data) => {
+        if(!data.ok){
+          return Promise.reject({error:data.status,message:"order failer"})
+        }else{
+          return data.json();
+        }
+      })
+  }else{
+    return fetch(`https://dom-nc-news-web.onrender.com/api/articles`)
+      .then((data) => {
+        if(!data.ok){
+          return Promise.reject({error:data.status,message:"order failer"})
+        }else{
+          return data.json();
+        }
+      })
+  }
+}
+
 export{
     getArticles,
     getCommentsById,
@@ -133,6 +173,7 @@ export{
     deleteCommentByCommentId,
     getAllTopics,
     getArticlesByTopic,
+    getAndSortAllArticles,
 }
 
 

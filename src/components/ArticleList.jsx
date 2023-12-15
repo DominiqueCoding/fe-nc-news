@@ -1,7 +1,7 @@
 import { useState,useEffect } from 'react'
 
 import Articles from './Articles'
-import {getArticles} from '../utils/api'
+import {getAndSortAllArticles} from '../utils/api'
 
 function ArticleList() {
 
@@ -11,8 +11,11 @@ function ArticleList() {
 
     const [isError,setIsError] = useState(false)
 
+    const [sortQuery, setSortQuery] = useState("")
+    const [orderQuery, setOrderQuery] = useState("")
+
     useEffect(()=>{
-      getArticles()
+      getAndSortAllArticles(sortQuery,orderQuery)
       .then((res) => {
         setArticlesList(res)
         setIsLoading(false)
@@ -21,7 +24,17 @@ function ArticleList() {
         setIsError({err})
         console.log(isError,"error")
       })
-    },[])
+    },[sortQuery,orderQuery])
+
+    function handleSort(query){
+      setSortQuery(query)
+    }
+
+    function handleOrder(query){
+      setOrderQuery(query)
+    }
+
+    console.log(sortQuery,"",orderQuery)
 
     if(isLoading){
       return(
@@ -30,7 +43,32 @@ function ArticleList() {
     }else{
       return (
         <>
-          {}
+          <div className='article-Queries'>
+              <select 
+              name="sort-query"
+              id="sort-query"
+              onChange={(event)=>{
+                handleSort(event.target.value)
+              }}
+              >
+                <option value="">no sort</option>
+                <option value="sort_by=date">sort by date</option>
+                <option value="sort_by=comment_count">sort by comment count</option>
+                <option value="sort_by=votes">sort by votes</option>
+              </select>
+
+              <select 
+              name="order-query"
+              id="order-query"
+              onChange={(event)=>{
+                handleOrder(event.target.value)
+              }}
+              >
+                <option value="">default descending sort</option>
+                <option value="order=desc">descending order</option>
+                <option value="order=asc">accending order</option>  
+              </select>
+          </div>
           <section className='article_container'>
             <div className="articles">
                 <ul className="formatted-articles">
