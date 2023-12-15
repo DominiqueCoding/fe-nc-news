@@ -9,6 +9,8 @@ function ArticleList() {
 
     const [isLoading,setIsLoading] = useState(true)
 
+    const [isError,setIsError] = useState(false)
+
     const [sortQuery, setSortQuery] = useState("")
     const [orderQuery, setOrderQuery] = useState("")
 
@@ -21,7 +23,11 @@ function ArticleList() {
       .then((res) => {
         setArticlesList(res)
         setIsLoading(false)
-      });
+      })
+      .catch((err)=>{
+        setIsError({err})
+        console.log(isError,"error")
+      })
     },[])
 
     function handleSort(query){
@@ -74,6 +80,7 @@ function ArticleList() {
                 <button>submit</button>
               </form>
           </div>
+          {}
           <section className='article_container'>
             <div className="articles">
                 <ul className="formatted-articles">
