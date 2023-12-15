@@ -1,7 +1,7 @@
 import { useState,useEffect } from 'react'
 
 import Articles from './Articles'
-import {getArticles} from '../utils/api'
+import {getAndSortAllArticles} from '../utils/api'
 
 function ArticleList() {
 
@@ -15,11 +15,7 @@ function ArticleList() {
     const [orderQuery, setOrderQuery] = useState("")
 
     useEffect(()=>{
-      
-
-
-
-      getArticles()
+      getAndSortAllArticles(sortQuery,orderQuery)
       .then((res) => {
         setArticlesList(res)
         setIsLoading(false)
@@ -28,7 +24,7 @@ function ArticleList() {
         setIsError({err})
         console.log(isError,"error")
       })
-    },[])
+    },[sortQuery,orderQuery])
 
     function handleSort(query){
       setSortQuery(query)
@@ -37,6 +33,8 @@ function ArticleList() {
     function handleOrder(query){
       setOrderQuery(query)
     }
+
+    console.log(sortQuery,"",orderQuery)
 
     if(isLoading){
       return(
@@ -66,21 +64,11 @@ function ArticleList() {
                 handleOrder(event.target.value)
               }}
               >
-                <option value="">no order</option>
-                <option value="order=asc">accending order</option>
+                <option value="">default descending sort</option>
                 <option value="order=desc">descending order</option>
+                <option value="order=asc">accending order</option>  
               </select>
-              
-              <form
-                onSubmit={()=>{
-
-                }}
-              
-              >
-                <button>submit</button>
-              </form>
           </div>
-          {}
           <section className='article_container'>
             <div className="articles">
                 <ul className="formatted-articles">
