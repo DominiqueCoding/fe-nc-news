@@ -8,10 +8,7 @@ import { UserContext } from '../context/UserContext';
 function Login() {
 
   const [userArray,setUserArray] = useState([])
-  const [selectedUser,setSelectedUser] = useState("")
-
   const [isLoading,setIsLoading] = useState(true)
-  
   const {currentUser,setCurrentUser} = useContext(UserContext)
 
   useEffect(()=>{
@@ -22,6 +19,12 @@ function Login() {
     })
   },[])
 
+  const handleUserSelect = (selectedUser)=>{
+    if(window.confirm(`sign in as ${selectedUser.username}?`)){
+      setCurrentUser(selectedUser)
+    }
+  }
+
   if(isLoading){
     return (
       <p>loading</p>
@@ -31,11 +34,13 @@ function Login() {
       <>
       <h1>welcome back {currentUser.name}</h1>
 
-      <h2 className='show name'>{currentUser.username}</h2>
+      <h2 className='user-card'>{currentUser.username}</h2>
       <img src={currentUser.avatar_url} alt="a user profle image" />
       
       <button onClick = {()=>{
-        setCurrentUser()
+        if(window.confirm(`sign out?`)){
+          setCurrentUser()
+        }
       }}>
         sign out
       </button>
@@ -45,17 +50,10 @@ function Login() {
     return (
       <>
         <section className='main_login'>
-          <ul className='login_list'>
-              <button onClick = {()=>{
-                setCurrentUser(selectedUser)
-              }}>login</button>
-              <button>Sign-up</button>
-          </ul>
-          
-          <ul>
+          <ul className='user-container'>
               {userArray.map((user) => {
                   return (
-                  <Users key = {user.username} user = {user}  setSelectedUser = {setSelectedUser}></Users>
+                  <Users key = {user.username} user = {user}  handleUserSelect = {handleUserSelect}></Users>
                   );
               })}
           </ul>
