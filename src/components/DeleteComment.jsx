@@ -6,8 +6,6 @@ import { UserContext } from '../context/UserContext';
 
 function DeleteComment(props) {
 
-    console.log(props.setCommentToDelete())
-
     const [error,setError] = useState()
     const [commentToDelete,setCommentToDelete] = useState()
 
@@ -22,7 +20,7 @@ function DeleteComment(props) {
             deleteCommentByCommentId(commentToDelete)
             .then(()=>{
                 alert("comment deleted")
-                // props.setCommentToDelete(commentToDelete)
+                props.updateDelete(commentToDelete)
             })
             .catch((err)=>{
                 setError(err)
@@ -35,7 +33,6 @@ function DeleteComment(props) {
         if(props.commentAuthor === currentUser.username){
             return (
                 <>  
-                    
                     <button onClick = {()=>{
                         if(window.confirm("delete this comment?")){
                             handleCommentDelete() 

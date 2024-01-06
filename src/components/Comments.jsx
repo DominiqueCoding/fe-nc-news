@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import DeleteComment from './DeleteComment'
 
-function Comments({comment,setCommentToDelete}) {
+function Comments({comment,updateDelete}) {
+
+
 
   return (
     <>
@@ -11,7 +13,7 @@ function Comments({comment,setCommentToDelete}) {
             <p>{comment.author}</p>
             <p>{new Date(comment.created_at).toLocaleString()}</p>
 
-            <DeleteComment commentAuthor = {comment.author} comment_id = {comment.comment_id} setCommentToDelete={setCommentToDelete}/> 
+            <DeleteComment commentAuthor = {comment.author} comment_id = {comment.comment_id} updateDelete={updateDelete}/> 
         </div>
     </>
   )

@@ -15,8 +15,9 @@ function CommentsList() {
     const [commentToAdd,setCommentToAdd] = useState()
     const [commentToDelete,setCommentToDelete] = useState()
 
-    useEffect(()=>{
+   
 
+    useEffect(()=>{
       getCommentsById(id)
       .then((res) => {
         setCommentsList(res)
@@ -24,7 +25,9 @@ function CommentsList() {
       });
     },[id,commentToAdd,commentToDelete])
 
-    console.log(commentToDelete)
+    const updateDelete = (newCommentToDelete) =>{
+      setCommentToDelete(newCommentToDelete)
+    }
 
     if(isLoading){
       return(
@@ -42,7 +45,7 @@ function CommentsList() {
                   <AddComment setCommentToAdd={setCommentToAdd}/>
                   {commentsList.map((comment) => {
                     return (
-                        <Comments key = {comment.comment_id} comment = {comment} setCommentToDelete={setCommentToDelete}/>
+                        <Comments key = {comment.comment_id} comment = {comment} updateDelete={updateDelete}/>
                     );
                   })}
                 </ul>
