@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import {getArticles} from '../utils/api'
+import {getArticles,patchArticleVotesById} from '../utils/api'
 import CommentsList from './CommentsList'
 import ArticleVoteButton from './ArticleVoteButton'
 import Error from './Error'
@@ -15,9 +15,12 @@ function ArticleSelect() {
   const [error,setError] = useState()
  
   const {id} = useParams()
+
+  const [voteUpdate, setVoteUpdate] = useState({inc_votes: 0})
   
   useEffect(()=>{
     getArticles(id)
+    patchArticleVotesById(id,voteUpdate)
     .then((res) => {
       setCurrentArticle(res)
       setIsLoading(false)
@@ -25,7 +28,11 @@ function ArticleSelect() {
     .catch((err)=>{
       setError(err)
     })
-  },[id])
+  },[id,voteUpdate])
+
+  const handleVoteChange = (voteChange) =>{
+    setVoteUpdate(voteChange)
+  }
 
   if(isLoading && !error){
     return (
@@ -53,9 +60,9 @@ function ArticleSelect() {
   
             <p>{new Date(currentArticle.created_at).toLocaleString()}</p>
 
-            {/* <p>{currentArticle.votes} votes</p> */}
+            <p>{currentArticle.votes} votes</p>
 
-            <ArticleVoteButton votes = {votes} setVotes = {setVotes} votesLocal = {currentArticle.votes}/>
+            <ArticleVoteButton handleVoteChange={handleVoteChange}/>
 
             <CommentsList/>
 

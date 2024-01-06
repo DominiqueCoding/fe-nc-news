@@ -1,17 +1,19 @@
 import { useState } from 'react'
 import DeleteComment from './DeleteComment'
 
-function Comments(props) {
+function Comments({comment,updateDelete}) {
+
+
 
   return (
     <>
         <div className='comment-item'>
-            <article>{props.comment.body}</article>
-            <p>{props.comment.votes} votes</p>
-            <p>{props.comment.author}</p>
-            <p>{new Date(props.comment.created_at).toLocaleString()}</p>
+            <article>{comment.body}</article>
+            <p>{comment.votes} votes</p>
+            <p>{comment.author}</p>
+            <p>{new Date(comment.created_at).toLocaleString()}</p>
 
-            <DeleteComment commentAuthor = {props.comment.author} comment_id = {props.comment.comment_id}/> 
+            <DeleteComment commentAuthor = {comment.author} comment_id = {comment.comment_id} updateDelete={updateDelete}/> 
         </div>
     </>
   )

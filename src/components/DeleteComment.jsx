@@ -1,10 +1,15 @@
 import { deleteCommentByCommentId } from '../utils/api'
 import { useState,useEffect } from 'react';
 
+import { useContext } from "react";
+import { UserContext } from '../context/UserContext';
+
 function DeleteComment(props) {
 
     const [error,setError] = useState()
     const [commentToDelete,setCommentToDelete] = useState()
+
+    const {currentUser} = useContext(UserContext)
 
     function handleCommentDelete(){
         setCommentToDelete(props.comment_id)
@@ -15,33 +20,31 @@ function DeleteComment(props) {
             deleteCommentByCommentId(commentToDelete)
             .then(()=>{
                 alert("comment deleted")
-                window.location.reload();
+                props.updateDelete(commentToDelete)
             })
             .catch((err)=>{
                 setError(err)
+                alert(error.message) 
             }) 
         }
     },[commentToDelete])
 
-    if(error){
-        alert(error.message)
-        window.location.reload();       
+    if(currentUser){
+        if(props.commentAuthor === currentUser.username){
+            return (
+                <>  
+                    <button onClick = {()=>{
+                        if(window.confirm("delete this comment?")){
+                            handleCommentDelete() 
+                        }
+                    }}>
+                        delete comment
+                    </button>
+                </>
+            )
+        }
     }
 
-    if(props.commentAuthor === "grumpy19"){
-        return (
-            <>  
-                
-                <button onClick = {()=>{
-                    if(window.confirm("delete this comment?")){
-                        handleCommentDelete() 
-                    }
-                }}>
-                    delete comment
-                </button>
-            </>
-        )
-    }
 }
 
 export default DeleteComment
