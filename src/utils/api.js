@@ -135,7 +135,7 @@ function getAndSortAllArticles(sortQuery,orderQuery){
         }
       })
   }else if(orderQuery){
-    return fetch(`https://dom-nc-news-web.onrender.com/api/articles?${orderquery}`)
+    return fetch(`https://dom-nc-news-web.onrender.com/api/articles?${orderQuery}`)
       .then((data) => {
         if(!data.ok){
           return Promise.reject({error:data.status,message:"order failer"})

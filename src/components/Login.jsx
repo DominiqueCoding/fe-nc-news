@@ -1,6 +1,7 @@
 import { useState,useEffect } from 'react'
 
 import Users from './Users';
+import UserProfile from './UserProfile';
 import { getAllUsers } from '../utils/api';
 import { useContext } from "react";
 import { UserContext } from '../context/UserContext';
@@ -32,18 +33,7 @@ function Login() {
   }else if(currentUser){
     return (
       <>
-      <h1>welcome back {currentUser.name}</h1>
-
-      <h2 className='user-card'>{currentUser.username}</h2>
-      <img src={currentUser.avatar_url} alt="a user profle image" />
-      
-      <button onClick = {()=>{
-        if(window.confirm(`sign out?`)){
-          setCurrentUser()
-        }
-      }}>
-        sign out
-      </button>
+      <UserProfile currentUser={currentUser} setCurrentUser={setCurrentUser}/>
       </>
     )
   }else{

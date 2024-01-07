@@ -53,9 +53,7 @@ ul{
   
 }
 
-.home{
 
-}
 
 .nav_list{
   margin:0;
@@ -143,6 +141,21 @@ ul{
   margin:10px 10px 20px;
   border: 3px solid grey;
   border-radius: 10px;
+}
+
+.user-item:hover{
+border-color: aqua;
+}
+
+.display-profile-img{
+  
+}
+
+.profile-container{
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  justify-content: space-evenly;
 }
 
 .user-container{
