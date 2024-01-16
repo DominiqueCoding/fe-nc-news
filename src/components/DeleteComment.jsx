@@ -33,7 +33,9 @@ function DeleteComment(props) {
         if(props.commentAuthor === currentUser.username){
             return (
                 <>  
-                    <button onClick = {()=>{
+                    <button 
+                        className='btn btn-neutral'
+                    onClick = {()=>{
                         if(window.confirm("delete this comment?")){
                             handleCommentDelete() 
                         }

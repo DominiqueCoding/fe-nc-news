@@ -10,7 +10,7 @@ function Header() {
   return (
     <>
       <header className='bg-indigo-300'>
-        <h1>NC News</h1>
+        <h1 className='text-xl'>NC News</h1>
         <h2>get the latest news here!</h2>
 
         <nav className='main_navBar p-2'>

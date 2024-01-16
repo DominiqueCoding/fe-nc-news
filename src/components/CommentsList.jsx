@@ -39,7 +39,7 @@ function CommentsList() {
             <div className="comments">
                 <ul className="">
                     
-                  <div className='card bg-indigo-400 shadow-xl m-2 p-2'>
+                  <div className='card bg-slate-400 shadow-xl m-2 p-2'>
                     <h2 className="text-xl">
                       {commentsList.length} comments
                     </h2>

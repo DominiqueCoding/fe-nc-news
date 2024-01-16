@@ -48,30 +48,10 @@ function ArticleSelect() {
     
     return (
       <>  
-
-      {/* <div className ='card bg-base-100 shadow-xl m-2'>
-          <figure><img className='h-48 w-96' src={props.article.article_img_url} alt="" /></figure>
-          <div className="card-body rounded-b-lg bg-indigo-400">
-            
-            <h2 className="card-title text-sm absolute top-3 left-3 right-3 text-gray-800 bg-white bg-opacity-75 p-4 rounded-lg">{props.article.title}</h2>
-
-            <p>by {props.article.author}</p>
-
-            <p>{new Date(props.article.created_at).toLocaleString()}</p>
-
-            <p>{props.article.comment_count} comments</p>
-
-            <p>{props.article.topic}</p>
-
-            <p>{props.article.votes} votes</p>
-            
-          </div>
-      </div>   */}
-
           <section className='card bg-base-100 shadow-xl m-2'>
             <figure><img className='h-full w-full' src={currentArticle.article_img_url} alt="" /></figure>
 
-            <div className="card-body rounded-b-lg bg-indigo-400 p-2">
+            <div className="card-body rounded-b-lg bg-slate-400 p-2">
               
               <div className='absolute top-3 left-3 right-3'>
                 <h2 className="card-title text-sm text-gray-800 bg-white bg-opacity-75 p-4 rounded-lg w-fit sm:text-2xl md:text-6xl">{currentArticle.title}</h2>

@@ -18,7 +18,7 @@ useEffect(()=>{
 console.log(userArray)
   return (
     <>
-        <div className='card bg-indigo-400 shadow-xl m-2 p-2 gap-5'>
+        <div className='card bg-slate-400 shadow-xl m-2 p-2 gap-5'>
             
             <div className='flex flex-row gap-5 text-xs md:text-base'>
               {userArray.map((user) => {

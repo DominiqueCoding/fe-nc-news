@@ -37,7 +37,7 @@ function TopicSelect() {
     else{
         return (
             <>
-                <h1 className='text-xl'>here is content related to {topic}</h1>
+                <h1 className=' card text-xl bg-slate-400 p-3 m-2 w-fit mx-auto'>here is content related to {topic}</h1>
 
     
                 <section>

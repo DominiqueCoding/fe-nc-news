@@ -13,7 +13,7 @@ function Topics(props) {
                         {props.topic.slug === "cooking" && <img className='h-48 w-96' src="https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?w=700&h=700" alt="" />}
                     </figure>
 
-                    <div className='card-body rounded-b-lg bg-indigo-400'>
+                    <div className='card-body rounded-b-lg bg-slate-400'>
                         <h2 className="card-title text-sm absolute top-3 left-3 right-3 text-gray-800 bg-white bg-opacity-75 p-4 rounded-lg">{props.topic.slug}</h2>
                         <p>{props.topic.description}</p>
                     </div>
