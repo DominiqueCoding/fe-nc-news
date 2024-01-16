@@ -10,7 +10,7 @@ function ArticleSelect() {
 
   const [currentArticle, setCurrentArticle] = useState()
   const [isLoading, setIsLoading] = useState(true)
-  const [votes,setVotes] = useState()
+  
 
   const [error,setError] = useState()
  
@@ -36,7 +36,9 @@ function ArticleSelect() {
 
   if(isLoading && !error){
     return (
-      <p>loading</p>
+      <div className='grid h-screen place-items-center'>
+          <p className='loading loading-dots loading-lg scale-[5]'></p>
+        </div>
     )
   }
   else if(error){
@@ -45,28 +47,70 @@ function ArticleSelect() {
   else{
     
     return (
-      <>
-          <section className='selected-article'>
-  
-            <h1>{currentArticle.title}</h1>
-  
-            <img src={currentArticle.article_img_url} alt="an article image" />
-  
-            <article>{currentArticle.body}</article>
-  
-            <p>{currentArticle.author}</p>
-  
-            <p>{currentArticle.topic}</p>
-  
-            <p>{new Date(currentArticle.created_at).toLocaleString()}</p>
+      <>  
 
-            <p>{currentArticle.votes} votes</p>
+      {/* <div className ='card bg-base-100 shadow-xl m-2'>
+          <figure><img className='h-48 w-96' src={props.article.article_img_url} alt="" /></figure>
+          <div className="card-body rounded-b-lg bg-indigo-400">
+            
+            <h2 className="card-title text-sm absolute top-3 left-3 right-3 text-gray-800 bg-white bg-opacity-75 p-4 rounded-lg">{props.article.title}</h2>
 
-            <ArticleVoteButton handleVoteChange={handleVoteChange}/>
+            <p>by {props.article.author}</p>
 
-            <CommentsList/>
+            <p>{new Date(props.article.created_at).toLocaleString()}</p>
 
+            <p>{props.article.comment_count} comments</p>
+
+            <p>{props.article.topic}</p>
+
+            <p>{props.article.votes} votes</p>
+            
+          </div>
+      </div>   */}
+
+          <section className='card bg-base-100 shadow-xl m-2'>
+            <figure><img className='h-full w-full' src={currentArticle.article_img_url} alt="" /></figure>
+
+            <div className="card-body rounded-b-lg bg-indigo-400 p-2">
+              
+              <div className='absolute top-3 left-3 right-3'>
+                <h2 className="card-title text-sm text-gray-800 bg-white bg-opacity-75 p-4 rounded-lg w-fit sm:text-2xl md:text-6xl">{currentArticle.title}</h2>
+              </div>
+
+              
+                <div className='card-title text-xs text-gray-800 bg-white bg-opacity-75 p-4 rounded-lg w-fit flex flex-col xs:flex-row sm:text-xl md:text-2xl gap-3 mx-auto md:gap-10'>
+                    <p>{currentArticle.author}</p>
+                    <p>{new Date(currentArticle.created_at).toLocaleString()}</p>
+                    <p>{currentArticle.votes} votes</p>
+                    <p>{currentArticle.topic}</p>
+                </div>
+
+                
+
+                <div className='flex flex-row gap-2 w-fit mx-auto'>
+                  <ArticleVoteButton handleVoteChange={handleVoteChange}/>
+                </div>
+
+              
+
+            
+              <article>{currentArticle.body}</article>
+    
+    
+              
+
+              
+    
+
+              
+              
+            
+            </div>
+  
+  
           </section>
+
+          <CommentsList/>
       </>
     )
   }

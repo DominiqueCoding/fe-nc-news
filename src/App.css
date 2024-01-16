@@ -17,12 +17,6 @@ ul{
   padding:0
 }
 
-#main_header{
-  background-color: rgb(172, 172, 243);
-  width: 100%;
-  
-}
-
 .nav_list > li{
   display: inline-block;
   
@@ -31,30 +25,12 @@ ul{
 .nav_btn{
   padding: 10px;
   width:20vw;
-  
-  
 }
 
-.nav_btn :not(:last-child){
-  
-  border-right: none
-  
-}
-
-.login{
-  border-top-left-radius: 8px;
-  border-bottom-left-radius: 8px;
-  
-}
-
-.search{
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
-  
-}
-
-.home{
-
+.topic-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .nav_list{
@@ -75,9 +51,9 @@ ul{
 }
 
 .formatted-topic-articles{
-  display: inline-block;
-  margin:0;
-  padding:0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .topic-item{
@@ -89,12 +65,9 @@ ul{
 }
 
 .formatted-articles{
-  display: grid;
-  
-  height: 80%;
-  width: 80%;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   
 }
 
@@ -108,7 +81,6 @@ ul{
   border: 3px solid grey;
   border-radius: 10px;
   width:30vw;
-  
 }
 
 .article-img{
@@ -116,14 +88,6 @@ ul{
   width:20vw;
   display:inline-block;
 }
-
-/* .article-content{
-  display: grid;
-  height: 100%;
-  width: 100%;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-} */
 
 .comment-item{
   
@@ -141,8 +105,26 @@ ul{
 .user-item{
   border:10px;
   margin:10px 10px 20px;
-  border: 3px solid grey;
-  border-radius: 10px;
+  
+}
+
+.user-item:hover{
+border-color: aqua;
+}
+
+.avatar-body{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-container{
+  display: flex;
+  flex-direction: column;
+  display:flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .user-container{
