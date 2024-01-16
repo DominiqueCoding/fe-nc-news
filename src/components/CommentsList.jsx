@@ -15,8 +15,6 @@ function CommentsList() {
     const [commentToAdd,setCommentToAdd] = useState()
     const [commentToDelete,setCommentToDelete] = useState()
 
-   
-
     useEffect(()=>{
       getCommentsById(id)
       .then((res) => {
@@ -39,10 +37,15 @@ function CommentsList() {
           <section className='comments_container'>
             
             <div className="comments">
-                <ul className="formatted-comments">
+                <ul className="">
                     
-                  <p>{commentsList.length} comments</p>
-                  <AddComment setCommentToAdd={setCommentToAdd}/>
+                  <div className='card bg-indigo-400 shadow-xl m-2 p-2'>
+                    <h2 className="text-xl">
+                      {commentsList.length} comments
+                    </h2>
+                    <AddComment setCommentToAdd={setCommentToAdd}/>
+                  </div>
+
                   {commentsList.map((comment) => {
                     return (
                         <Comments key = {comment.comment_id} comment = {comment} updateDelete={updateDelete}/>

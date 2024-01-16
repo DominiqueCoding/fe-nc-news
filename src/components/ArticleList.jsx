@@ -27,48 +27,63 @@ function ArticleList() {
     },[sortQuery,orderQuery])
 
     function handleSort(query){
-      setSortQuery(query)
+      if(query === "all"){
+        setSortQuery()
+        setOrderQuery()
+      }
+      else{
+        setSortQuery(query)
+      }
     }
 
     function handleOrder(query){
       setOrderQuery(query)
     }
 
-    console.log(sortQuery,"",orderQuery)
-
     if(isLoading){
       return(
-        <p>loading</p>
+        <div className='grid h-screen place-items-center'>
+          <p className='loading loading-dots loading-lg scale-[5]'></p>
+        </div>
       )
     }else{
       return (
         <>
-          <div className='article-Queries'>
-              <select 
-              name="sort-query"
-              id="sort-query"
-              onChange={(event)=>{
-                handleSort(event.target.value)
-              }}
+          <div className='article-Queries p-2 '>
+            <div className="join">
+              
+              <select
+                className="select select-bordered join-item bg-indigo-300 "
+                name="sort-query"
+                id="sort-query"
+                onChange={(event)=>{
+                  handleSort(event.target.value)
+
+                }}
               >
-                <option value="">no sort</option>
-                <option value="sort_by=date">sort by date</option>
+                <option value="all">show all</option>
+                <option value="sort_by=created_at">sort by date</option>
                 <option value="sort_by=comment_count">sort by comment count</option>
                 <option value="sort_by=votes">sort by votes</option>
               </select>
 
-              <select 
-              name="order-query"
-              id="order-query"
-              onChange={(event)=>{
-                handleOrder(event.target.value)
+              {sortQuery && <select
+                className="select select-bordered join-item bg-indigo-300" 
+                name="order-query"
+                id="order-query"
+                onChange={(event)=>{
+                  handleOrder(event.target.value)
               }}
               >
-                <option value="">default descending sort</option>
                 <option value="order=desc">descending order</option>
                 <option value="order=asc">accending order</option>  
-              </select>
+              </select>}
+
+              
+            </div>
           </div>
+          
+
           <section className='article_container'>
             <div className="articles">
                 <ul className="formatted-articles">

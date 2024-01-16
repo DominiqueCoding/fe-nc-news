@@ -26,7 +26,9 @@ function TopicSelect() {
 
     if(isLoading && !error){
         return(
-            <p>loading</p>
+            <div className='grid h-screen place-items-center'>
+          <p className='loading loading-dots loading-lg scale-[5]'></p>
+        </div>
         )
     }
     else if(error){
@@ -35,7 +37,8 @@ function TopicSelect() {
     else{
         return (
             <>
-                <h1>here is content related to {topic}</h1>
+                <h1 className='text-xl'>here is content related to {topic}</h1>
+
     
                 <section>
                     <ul className='formatted-topic-articles'>

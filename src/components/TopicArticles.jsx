@@ -1,17 +1,16 @@
-import { useState } from 'react'
 import { Link } from "react-router-dom";
 
 function TopicArticles(props) {
 
   return (
     <>
-      <div className ='article-card'>
-          <Link to = {"/article/" + props.article.article_id}>
-              <h3 className='article-name'>{props.article.title}</h3>
-              <img className='article-img' src={props.article.article_img_url} alt="" />
-          </Link>
-          <div className='article-content'>
-              
+      <Link to = {"/article/" + props.article.article_id}>
+        <div className ='card bg-base-100 shadow-xl m-2'>
+          <figure><img className='h-48 w-96' src={props.article.article_img_url} alt="" /></figure>
+          <div className="card-body rounded-b-lg bg-indigo-400">
+            
+            <h2 className="card-title text-sm absolute top-3 left-3 right-3 text-gray-800 bg-white bg-opacity-75 p-4 rounded-lg">{props.article.title}</h2>
+
             <p>by {props.article.author}</p>
 
             <p>{new Date(props.article.created_at).toLocaleString()}</p>
@@ -21,8 +20,10 @@ function TopicArticles(props) {
             <p>{props.article.topic}</p>
 
             <p>{props.article.votes} votes</p>
+            
           </div>
-      </div>
+      </div>  
+    </Link>
         
     </>
   )

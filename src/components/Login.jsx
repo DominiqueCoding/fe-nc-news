@@ -28,7 +28,9 @@ function Login() {
 
   if(isLoading){
     return (
-      <p>loading</p>
+      <div className='grid h-screen place-items-center'>
+          <p className='loading loading-dots loading-lg scale-[5]'></p>
+        </div>
     )
   }else if(currentUser){
     return (

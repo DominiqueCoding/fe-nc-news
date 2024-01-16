@@ -7,47 +7,34 @@ import { UserContext } from '../context/UserContext';
 function Header() {
   const {currentUser} = useContext(UserContext)
 
-  let loggedInMessage = "not logged in"
-
-  if(currentUser){
-    loggedInMessage = `logged in as ${currentUser.username}`
-  }
-
   return (
     <>
-      <header id='main_header'>
+      <header className='bg-indigo-300'>
         <h1>NC News</h1>
         <h2>get the latest news here!</h2>
 
-        {/* <h1 class="text-3xl font-bold underline mb-10">Hello Vue!</h1>
-        <button class="btn btn-primary">Hello Daisy button</button> */}
-
-        <h3>{loggedInMessage}</h3>
-        
-        <nav id='main_navBar'>
+        <nav className='main_navBar p-2'>
             <ul className='join'>
-    
                 <li>
                     <Link to = "/login">
-                        <button className='btn join-item w-30 no-animation sm:w-40'>login</button>
+                        <button className='btn btn-primary join-item w-30 no-animation sm:w-40 '>{currentUser? currentUser.username : `log in`}</button>
                     </Link>
                 </li>
 
                 <li>
                     <Link to = "/">
-                        <button className='btn join-item w-30 no-animation sm:w-40'>Home</button>
+                        <button className='btn btn-primary join-item w-30 no-animation sm:w-40'>Home</button>
                     </Link>
                 </li>
 
                 <li>
                     <Link to = "/search">
-                        <button className='btn join-item w-30 no-animation sm:w-40' >Search</button>
+                        <button className='btn btn-primary join-item w-30 no-animation sm:w-40' >Search</button>
                     </Link>   
                 </li>
                 
             </ul>
         </nav>
-
       </header>
     </>
   )

@@ -50,27 +50,33 @@ function AddComment({setCommentToAdd}) {
     
   return (
     <>
-      <form onSubmit = {(event)=>{
+      <form 
+      
+      onSubmit = {(event)=>{
         event.preventDefault()
         handleSubmit()
 
       }}>
-        <label htmlFor= "comment-submit">
-            write a comment?
-            <input
-                id="comment"
-                type="text"
-                name="comment-submit"
-                placeholder="write comment"
-                onChange={(event) => {
-                  handleCommentChange(event.target.value);
-                }}
-            >
-            </input>
-        </label>
-        <button>
-            add comment
-        </button>
+        <div className='flex flex-col gap-2'>
+          <textarea
+              className="textarea textarea-bordered p-2"
+              id="comment"
+              type="text"
+              name="comment-submit"
+              placeholder="write comment"
+              onChange={(event) => {
+                handleCommentChange(event.target.value);
+              }}
+          >
+          </textarea>
+
+          <button
+          className='btn btn-neutral'
+          >
+              add comment
+          </button>
+        </div>
+
       </form>  
     </>
   )
