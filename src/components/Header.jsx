@@ -29,7 +29,7 @@ function Header() {
 
                 <li>
                     <Link to = "/search">
-                        <button className='btn btn-primary join-item w-30 no-animation sm:w-40' >Search</button>
+                        <button className='btn btn-primary join-item w-30 no-animation sm:w-40' >topics</button>
                     </Link>   
                 </li>
                 

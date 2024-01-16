@@ -50,7 +50,7 @@ function ArticleList() {
       return (
         <>
           <div className='article-Queries p-2 '>
-            <div className="join">
+            <div className="join join-vertical sm:join-horizontal">
               
               <select
                 className="select select-bordered join-item bg-indigo-300 "
