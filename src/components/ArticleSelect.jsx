@@ -5,6 +5,9 @@ import CommentsList from './CommentsList'
 import ArticleVoteButton from './ArticleVoteButton'
 import Error from './Error'
 
+import { useContext } from "react";
+import { UserContext } from '../context/UserContext';
+
 
 function ArticleSelect() {
 
@@ -17,6 +20,8 @@ function ArticleSelect() {
   const {id} = useParams()
 
   const [voteUpdate, setVoteUpdate] = useState({inc_votes: 0})
+
+  const {currentUser} = useContext(UserContext)
   
   useEffect(()=>{
     getArticles(id)
@@ -66,10 +71,10 @@ function ArticleSelect() {
                 </div>
 
                 
-
-                <div className='flex flex-row gap-2 w-fit mx-auto'>
+                {currentUser && <div className='flex flex-row gap-2 w-fit mx-auto'>
                   <ArticleVoteButton handleVoteChange={handleVoteChange}/>
-                </div>
+                </div>}
+                
 
               
 
